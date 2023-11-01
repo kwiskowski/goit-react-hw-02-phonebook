@@ -1,12 +1,7 @@
-import { PhonebookInput } from './PhonebookInput/PhonebookInput';
+import { PhonebookForm } from './PhonebookForm/PhonebookForm';
 import { Section } from './Section/Section';
 
 export const App = () => {
-  // state = {
-  //   contacts: [],
-  //   name: '',
-  // };
-
   return (
     <div
       style={{
@@ -20,7 +15,7 @@ export const App = () => {
       }}
     >
       <Section title="Phonebook">
-        <PhonebookInput />
+        <PhonebookForm />
       </Section>
       <Section title="Contacts"></Section>
     </div>
