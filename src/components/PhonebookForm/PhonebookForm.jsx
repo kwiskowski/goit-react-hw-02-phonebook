@@ -13,24 +13,55 @@ export class PhonebookForm extends Component {
 
   handleSubmit = evt => {
     evt.preventDefault();
-    const { name, id } = this.state;
-    console.log('submit');
+    const { name, number } = this.state;
+    // console.log('submit');
+    this.props.onSubmit(name, number);
+    this.setState({ name: '', number: '' });
+  };
+
+  handleChange = evt => {
+    const { name, value } = evt.target;
+    this.setState({ [name]: value });
   };
 
   render() {
+    const { name, number } = this.state;
+
     return (
-      <form onSubmit={this.handleSubmit} className={css.input}>
-        <input
-          type="text"
-          name="name"
-          pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-          title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-          required
-        />
-        <button type="submit" className="submitButton">
-          Add contact
-        </button>
-      </form>
+      <div>
+        <form className={css.form} onSubmit={this.handleSubmit}>
+          <label className={css.label}>
+            Name
+            <input
+              type="text"
+              name="name"
+              pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+              title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+              required
+              value={name}
+              onChange={this.handleChange}
+              className={css.input}
+            />
+          </label>
+
+          <label className={css.label}>
+            <input
+              type="tel"
+              name="number"
+              pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+              title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+              required
+              value={number}
+              onChange={this.handleChange}
+              className={css.input}
+            />
+          </label>
+
+          <button type="submit" className={css.button}>
+            Add contact
+          </button>
+        </form>
+      </div>
     );
   }
 }
