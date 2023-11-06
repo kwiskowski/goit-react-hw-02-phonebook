@@ -2,9 +2,6 @@ import { Component } from 'react';
 import css from './PhonebookForm.module.css';
 import PropTypes from 'prop-types';
 
-import { nanoid } from 'nanoid';
-const id = nanoid(); //=> "Uakgb_J5m9g-0JDMbcJqLJ"
-
 export class PhonebookForm extends Component {
   state = {
     name: '',
